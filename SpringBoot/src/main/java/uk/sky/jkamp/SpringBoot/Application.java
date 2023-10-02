@@ -1,13 +1,13 @@
-package uk.sky.jkamp.GetYourWay;
+package uk.sky.jkamp.SpringBoot;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class GetYourWayApplication {
+public class Application {
 
 	public static void main(String[] args) {
-		SpringApplication.run(GetYourWayApplication.class, args);
+		SpringApplication.run(Application.class, args);
 	}
 
 }

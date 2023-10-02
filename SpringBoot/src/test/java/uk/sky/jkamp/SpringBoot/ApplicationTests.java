@@ -1,10 +1,10 @@
-package uk.sky.jkamp.GetYourWay;
+package uk.sky.jkamp.SpringBoot;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class GetYourWayApplicationTests {
+class ApplicationTests {
 
 	@Test
 	void contextLoads() {
