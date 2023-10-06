@@ -3,6 +3,7 @@ target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
+.DS_Store
 
 ### STS ###
 .apt_generated
@@ -18,6 +19,9 @@ target/
 *.iws
 *.iml
 *.ipr
+
+# Exclude sensitive credentials file
+src/main/resources/credentials.properties
 
 ### NetBeans ###
 /nbproject/private/
