@@ -19,6 +19,8 @@ target/
 *.iws
 *.iml
 *.ipr
+src/main/resources/application.properties
+src/main/resources/application-dev.properties
 
 # Exclude sensitive credentials file
 src/main/resources/credentials.properties
