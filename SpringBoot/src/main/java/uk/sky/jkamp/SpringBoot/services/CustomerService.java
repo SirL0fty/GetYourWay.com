@@ -5,12 +5,14 @@ import uk.sky.jkamp.SpringBoot.entities.Customer;
 import uk.sky.jkamp.SpringBoot.entities.CustomerRepo;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.stereotype.Service;
+import uk.sky.jkamp.SpringBoot.entities.Programme;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 @Service
 public class CustomerService {
+
 
     private CustomerRepo customerRepo;
     private List<Customer> customers=new ArrayList<>();
@@ -19,5 +21,11 @@ public class CustomerService {
         return this.customerRepo.findAllCustomer();
     }
 
+    public Customer createCustomer(@RequestBody @Valid Customer customer)
+    {
+
+        return this.customerRepo.save(customer);
+
+    }
 
 }

@@ -18,4 +18,11 @@ public class JourneyService {
     public List<Journey> findAllJourneys() {
         return this.journeyRepo.findAllJourney();
     }
+
+    public Journey createJourney(@RequestBody @Valid Journey journey)
+    {
+
+        return this.journeyRepo.save(journey);
+
+    }
 }

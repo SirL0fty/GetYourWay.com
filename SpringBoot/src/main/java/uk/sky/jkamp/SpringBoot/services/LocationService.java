@@ -15,4 +15,13 @@ public class LocationService {
     public List<Location> findAllLocations() {
         return this.locationRepo.findAllLocation();
     }
+
+    public Location createLocation(@RequestBody @Valid Location location)
+    {
+
+        return this.locationRepo.save(location);
+
+    }
+
+
 }
