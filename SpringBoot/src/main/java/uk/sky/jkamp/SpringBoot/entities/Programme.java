@@ -27,7 +27,7 @@ public class Programme {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long programmeID;
+    private long id;
 
     @Size(min=0,max=30)
     @NotNull
@@ -43,12 +43,15 @@ public class Programme {
 
     //gets and sets :
 
-    public long getProgrammeID() {
-        return programmeID;
+
+
+
+    public long getId() {
+        return id;
     }
 
-    public void setProgrammeID(long programmeID) {
-        this.programmeID = programmeID;
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getTitle() {
