@@ -22,4 +22,15 @@ public class WeatherController {
     public String getCurrentWeatherByCity(@RequestParam(value = "city") String city) {
         return this.weatherService.getCurrentWeatherByCity(city);
     }
+
+    /**
+     * An API that retrieves the current weather conditions for a pair of coordinates
+     * @param latitude - The latitude of the location
+     * @param longitude - The longitude of the location
+     * @return - A JSON object in String format with the current weather
+     */
+    @GetMapping("/getCurrentWeatherByCoordinates")
+    public String getCurrentWeatherByCoordinates(@RequestParam(value = "latitude") Double latitude, @RequestParam(value = "longitude") Double longitude) {
+        return this.weatherService.getCurrentWeatherByCoordinates(latitude, longitude);
+    }
 }
