@@ -28,7 +28,7 @@ public class Programme extends Location{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int programmeID;
+    private long programmeID;
 
     @Size(min=0,max=30)
     @NotNull
@@ -43,11 +43,11 @@ public class Programme extends Location{
 
     //gets and sets :
 
-    public int getProgrammeID() {
+    public long getProgrammeID() {
         return programmeID;
     }
 
-    public void setProgrammeID(int programmeID) {
+    public void setProgrammeID(long programmeID) {
         this.programmeID = programmeID;
     }
 
