@@ -9,7 +9,7 @@ import jakarta.validation.constraints.Size;
 import jakarta.persistence.Entity;
 
 @Entity
-public class Location extends Programme{
+public class Location{
 
 //    - name: String
 //- latitude: Double
@@ -27,11 +27,7 @@ public class Location extends Programme{
         this.longitude = longitude;
     }
 
-    public Location(String title, String genre,  double latitude, double longitude) {
-        super(title, genre);
-        this.latitude = latitude;
-        this.longitude = longitude;
-    }
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

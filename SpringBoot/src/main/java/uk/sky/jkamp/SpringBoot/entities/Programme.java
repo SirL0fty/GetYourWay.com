@@ -9,7 +9,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 @Entity
-public class Programme {
+public class Programme extends Location{
 
     public Programme() {
         this("American Horror Story","Horror");
@@ -20,7 +20,11 @@ public class Programme {
         Genre = genre;
     }
 
-
+    public Programme(double latitude, double longitude, String title, String genre) {
+        super(latitude, longitude);
+        Title = title;
+        Genre = genre;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

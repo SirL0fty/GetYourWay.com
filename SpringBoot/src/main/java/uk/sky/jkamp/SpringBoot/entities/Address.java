@@ -12,7 +12,7 @@ import jakarta.validation.constraints.Size;
 
 
 @Entity
-public class Address extends Customer{
+public class Address {
 
 
     public Address() {
@@ -34,14 +34,7 @@ public class Address extends Customer{
         this.postCode = postCode;
     }
 
-    public Address(int customerID, String name, String email, boolean hasEnabled2FA, int addressID, String street, String city, String county, String postCode) {
-        super(customerID, name, email, hasEnabled2FA);
-        this.addressID = addressID;
-        Street = street;
-        this.city = city;
-        this.county = county;
-        this.postCode = postCode;
-    }
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

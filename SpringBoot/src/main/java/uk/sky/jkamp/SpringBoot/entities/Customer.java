@@ -13,19 +13,25 @@ import java.util.ArrayList;
 
 
 @Entity
-public class Customer {
+public class Customer extends Address {
 
     public Customer() {
-        this(0,"John Doe","abcdefg@gmail.com",false);
+        this("John Doe","abcdefg@gmail.com",false);
     }
-    public Customer(int customerID, String name, String email, boolean hasEnabled2FA) {
-        this.customerID = customerID;
+    public Customer( String name, String email, boolean hasEnabled2FA) {
+
         this.name = name;
         this.email = email;
         this.hasEnabled2FA = hasEnabled2FA;
     }
 
-
+    public Customer(String street, String city, String county,
+                    String postCode, String name, String email, boolean hasEnabled2FA) {
+        super(street, city, county, postCode);
+        this.name = name;
+        this.email = email;
+        this.hasEnabled2FA = hasEnabled2FA;
+    }
 
     // init the id
     @Id
