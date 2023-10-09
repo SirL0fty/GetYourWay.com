@@ -1,15 +1,14 @@
 package uk.sky.jkamp.SpringBoot.entities;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import org.springframework.context.annotation.Bean;
+
 
 @Entity
-public class Programme extends Location{
+public class Programme {
 
     public Programme() {
         this("American Horror Story","Horror");
@@ -21,7 +20,7 @@ public class Programme extends Location{
     }
 
     public Programme(double latitude, double longitude, String title, String genre) {
-        super(latitude, longitude);
+
         Title = title;
         Genre = genre;
     }
@@ -39,7 +38,8 @@ public class Programme extends Location{
     private String Genre;
 
 
-    //private Location location;
+    @ManyToOne
+    private Location location;
 
     //gets and sets :
 

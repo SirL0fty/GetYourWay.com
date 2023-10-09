@@ -15,34 +15,27 @@ import jakarta.validation.constraints.Size;
 public class Address {
 
 
+
+
+
+    public Address(int id, String street, String city, String county, String postCode) {
+        this.id = id;
+        this.street = street;
+        this.city = city;
+        this.county = county;
+        this.postCode = postCode;
+    }
     public Address() {
-        this("eg: Sesame street","eg: London"," eg: Greater London","eg :W1T");
+//        this("eg: Sesame street","eg: London"," eg: Greater London","eg :W1T");
     }
-
-    public Address(String street, String city, String county, String postCode) {
-        Street = street;
-        this.city = city;
-        this.county = county;
-        this.postCode = postCode;
-    }
-
-    public Address(int addressID, String street, String city, String county, String postCode) {
-        this.addressID = addressID;
-        Street = street;
-        this.city = city;
-        this.county = county;
-        this.postCode = postCode;
-    }
-
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int addressID;
+    private int id;
 
     @NotNull
     @Size(min=0,max=28)
-    private String Street;
+    private String street;
 
     @NotNull
     @Size(min=0,max=20)
@@ -58,24 +51,44 @@ public class Address {
 
     //gets and sets :
 
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
     public void setStreet(String street) {
-        Street = street;
+        this.street = street;
+    }
+
+    public String getCity() {
+        return city;
     }
 
     public void setCity(String city) {
         this.city = city;
     }
 
+    public String getCounty() {
+        return county;
+    }
+
     public void setCounty(String county) {
         this.county = county;
+    }
+
+    public String getPostCode() {
+        return postCode;
     }
 
     public void setPostCode(String postCode) {
         this.postCode = postCode;
     }
-
-
-
-
-
 }

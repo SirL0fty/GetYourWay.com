@@ -13,10 +13,10 @@ import java.util.ArrayList;
 
 
 @Entity
-public class Customer extends Address {
+public class Customer  {
 
     public Customer() {
-        this("John Doe","abcdefg@gmail.com",false);
+
     }
     public Customer( String name, String email, boolean hasEnabled2FA) {
 
@@ -27,7 +27,7 @@ public class Customer extends Address {
 
     public Customer(String street, String city, String county,
                     String postCode, String name, String email, boolean hasEnabled2FA) {
-        super(street, city, county, postCode);
+        super();
         this.name = name;
         this.email = email;
         this.hasEnabled2FA = hasEnabled2FA;
@@ -36,16 +36,16 @@ public class Customer extends Address {
     // init the id
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int customerID;
+    private Long customerID;
 
     // get and set for id
 
 
-    public int getCustomerID() {
+    public Long getCustomerID() {
         return customerID;
     }
 
-    public void setCustomerID(int customerID) {
+    public void setCustomerID(Long customerID) {
         this.customerID = customerID;
     }
 
