@@ -13,8 +13,7 @@ import java.time.LocalTime;
 @Entity
 public class Journey {
 
-    public Journey() { this("American Horror Story","Flight",
-            LocalDate.now(),LocalTime.now(),LocalDate.now());
+    public Journey() {
     }
 
     public Journey(String title, String transportationMode,

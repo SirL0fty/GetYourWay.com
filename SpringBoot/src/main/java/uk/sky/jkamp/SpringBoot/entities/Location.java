@@ -18,7 +18,7 @@ public class Location{
 
     public Location() {
 
-        this(0.0,0.0);
+
     }
 
     public Location(double latitude, double longitude) {
