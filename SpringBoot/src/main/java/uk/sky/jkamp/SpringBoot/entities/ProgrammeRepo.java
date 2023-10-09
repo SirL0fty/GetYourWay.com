@@ -8,19 +8,20 @@ import java.util.ArrayList;
 @Repository
 public interface ProgrammeRepo extends JpaRepository<Programme,Long> {
 
+
     @Query( value= "SELECT * FROM Programme" , nativeQuery = true)
-    List<Customer> findAllProgramme();
+    List<Programme> findAllProgramme();
 
 
     @Query( value= "SELECT * FROM Programme where Title=?1" , nativeQuery = true)
-    List<Customer> findProgrammeByTitle();
+    List<Programme> findProgrammeByTitle();
 
 
    @Query( value= "SELECT * FROM Programme where genre=?1" , nativeQuery = true)
-    List<Customer> findProgrammeByGenre();
+    List<Programme> findProgrammeByGenre();
 
     @Query( value= "SELECT * FROM Programme where genre=?1 and Title=?1" , nativeQuery = true)
-    List<Customer> findProgrammeByGenreAndTitle();
+    List<Programme> findProgrammeByGenreAndTitle();
 
         }
 
