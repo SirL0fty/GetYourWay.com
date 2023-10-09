@@ -14,6 +14,19 @@ import java.util.ArrayList;
 
 @Entity
 public class Customer {
+
+    public Customer() {
+        this(0,"John Doe","abcdefg@gmail.com",false);
+    }
+    public Customer(int customerID, String name, String email, boolean hasEnabled2FA) {
+        this.customerID = customerID;
+        this.name = name;
+        this.email = email;
+        this.hasEnabled2FA = hasEnabled2FA;
+    }
+
+
+
     // init the id
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,9 +53,6 @@ public class Customer {
     @NotNull
     private String email;
 
-    @Size(min = 0, max = 28)
-    @NotNull
-    //private Address address;
 
     private boolean hasEnabled2FA;
 
