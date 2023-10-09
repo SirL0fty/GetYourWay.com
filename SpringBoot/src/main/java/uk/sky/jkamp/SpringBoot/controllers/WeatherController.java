@@ -33,4 +33,15 @@ public class WeatherController {
     public String getCurrentWeatherByCoordinates(@RequestParam(value = "latitude") Double latitude, @RequestParam(value = "longitude") Double longitude) {
         return this.weatherService.getCurrentWeatherByCoordinates(latitude, longitude);
     }
+
+    /**
+     * An API that retrieves the forecasted weather for the current day and three subsequent days
+     * @param latitude - The location latitude
+     * @param longitude - The location longitude
+     * @return - A JSON object in String format with the weather for the current day and three subsequent days
+     */
+    @GetMapping("/getDailyForecastedWeather")
+    public String getDailyForecastedWeatherForFourDays(@RequestParam(value = "latitude") Double latitude, @RequestParam(value = "longitude") Double longitude) {
+        return this.weatherService.getDailyForecastedWeatherForFourDays(latitude, longitude);
+    }
 }

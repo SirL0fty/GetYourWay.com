@@ -52,4 +52,25 @@ public class WeatherService {
                 .bodyToMono(String.class)
                 .block();
     }
+
+    /**
+     * Retrieves the daily forecasted weather for the current day and three subsequent days
+     * @param latitude - The latitude of the location
+     * @param longitude - The longitude of the location
+     * @return - A JSON object in String format with the weather for the current day and three subsequent days
+     */
+    public String getDailyForecastedWeatherForFourDays(Double latitude, Double longitude) {
+        String startDate = Instant.now().toString();
+        String endDate = Instant.now().plusSeconds(259200).toString();
+
+        WebClient webClient = WebClient.create("https://api.meteomatics.com/" + startDate + "--" + endDate + ":PT24H/t_2m:C/" + latitude + "," + longitude + "/json");
+        String credentials = meteomaticsUsername + ":" + meteomaticsPassword;
+        String encodedCredentials = Base64.getEncoder().encodeToString(credentials.getBytes(StandardCharsets.UTF_8));
+
+        return webClient.get()
+                .headers(httpHeaders -> httpHeaders.setBasicAuth(encodedCredentials))
+                .retrieve()
+                .bodyToMono(String.class)
+                .block();
+    }
 }
