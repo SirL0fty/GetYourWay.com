@@ -1,6 +1,8 @@
 package uk.sky.jkamp.SpringBoot.entities;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
@@ -10,7 +12,7 @@ import jakarta.validation.constraints.Size;
 
 
 @Entity
-public class Address {
+public class Address extends Customer{
 
 
     public Address() {
@@ -24,7 +26,26 @@ public class Address {
         this.postCode = postCode;
     }
 
+    public Address(int addressID, String street, String city, String county, String postCode) {
+        this.addressID = addressID;
+        Street = street;
+        this.city = city;
+        this.county = county;
+        this.postCode = postCode;
+    }
+
+    public Address(int customerID, String name, String email, boolean hasEnabled2FA, int addressID, String street, String city, String county, String postCode) {
+        super(customerID, name, email, hasEnabled2FA);
+        this.addressID = addressID;
+        Street = street;
+        this.city = city;
+        this.county = county;
+        this.postCode = postCode;
+    }
+
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int addressID;
 
     @NotNull
     @Size(min=0,max=28)
