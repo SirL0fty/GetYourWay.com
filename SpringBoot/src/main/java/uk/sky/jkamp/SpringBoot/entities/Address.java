@@ -18,7 +18,7 @@ public class Address {
 
 
 
-    public Address(int id, String street, String city, String county, String postCode) {
+    public Address(long id, String street, String city, String county, String postCode) {
         this.id = id;
         this.street = street;
         this.city = city;
@@ -31,7 +31,7 @@ public class Address {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
 
     @NotNull
     @Size(min=0,max=28)
@@ -52,11 +52,11 @@ public class Address {
     //gets and sets :
 
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

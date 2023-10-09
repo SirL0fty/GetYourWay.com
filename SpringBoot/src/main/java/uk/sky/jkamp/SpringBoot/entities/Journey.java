@@ -28,14 +28,14 @@ public class Journey {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int JourneyId;
+    private long id;
 
-    public int getJourneyId() {
-        return JourneyId;
+    public long getId() {
+        return id;
     }
 
-    public void setJourneyId(int journeyId) {
-        JourneyId = journeyId;
+    public void setId(long id) {
+        this.id = id;
     }
 
     @NotNull

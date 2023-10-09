@@ -31,14 +31,17 @@ public class Location{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int locationId;
-    public int getLocationid() {
-        return locationId;
+    private long id;
+
+
+    public long getId() {
+        return id;
     }
 
-    public void setLocationid(int locationid) {
-        this.locationId = locationid;
+    public void setId(long id) {
+        this.id = id;
     }
+
     @NotNull
     private double latitude;
 

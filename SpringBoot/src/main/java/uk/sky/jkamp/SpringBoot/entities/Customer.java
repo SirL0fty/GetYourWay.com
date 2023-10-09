@@ -36,19 +36,18 @@ public class Customer  {
     // init the id
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long customerID;
+    private Long id;
 
     // get and set for id
 
 
-    public Long getCustomerID() {
-        return customerID;
+    public Long getId() {
+        return id;
     }
 
-    public void setCustomerID(Long customerID) {
-        this.customerID = customerID;
+    public void setId(Long id) {
+        this.id = id;
     }
-
 
     //init the name
     @Size(min = 0, max = 28)
