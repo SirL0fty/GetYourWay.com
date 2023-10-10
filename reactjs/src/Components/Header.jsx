@@ -10,7 +10,7 @@ const Header = () => {
     <nav className='navbar navbar-expand-lg'>
         <div className="container mt-2">
             <a className='navbar-brand' href="#">
-                <img style={{width: "5em"}} src={getYourWayLogo} alt="Get Your Way" />
+                <img style={{width: "10em"}} src={getYourWayLogo} alt="Get Your Way" />
             </a>
 
             <button
