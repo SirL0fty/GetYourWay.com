@@ -9,10 +9,25 @@ import java.util.List;
 import java.util.Optional;
 @Service
 public class LocationService {
+
+
     private LocationRepo locationRepo;
     private List<Location> locations = new ArrayList<>();
 
-    public List<Location> findAllLocations() {
-        return this.locationRepo.findAllLocation();
+    public LocationService(LocationRepo locationRepo) {
+        this.locationRepo = locationRepo;
     }
+
+    public List<Location> findAllLocations() {
+        return this.locationRepo.findAllLocations();
+    }
+
+    public Location createLocation(@RequestBody @Valid Location location)
+    {
+
+        return this.locationRepo.save(location);
+
+    }
+
+
 }

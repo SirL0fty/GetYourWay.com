@@ -16,15 +16,13 @@ public class Journey {
     public Journey() {
     }
 
-    public Journey(String title, String transportationMode,
-                   LocalDate departureDate, LocalTime departureTime, LocalDate arrivalDate) {
+    public Journey(String title, String transportationMode, String departureDate, String departureTime, String arrivalDate) {
         this.title = title;
         this.transportationMode = transportationMode;
         this.departureDate = departureDate;
         this.departureTime = departureTime;
         this.arrivalDate = arrivalDate;
     }
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -46,16 +44,17 @@ public class Journey {
     @Size(min=0,max=28)
     private String transportationMode;
 
-    @NotNull
-    @Size(min=0,max=28)
-    private LocalDate departureDate;
 
-    @NotNull
     @Size(min=0,max=28)
-    private LocalTime departureTime;
+    private String departureDate;
 
-    @NotNull
-    private LocalDate arrivalDate;
+
+    @Size(min=0,max=28)
+    private String departureTime;
+
+
+    @Size(min=0,max=28)
+    private String arrivalDate;
 
     public String getTitle() {
         return title;
@@ -73,27 +72,27 @@ public class Journey {
         this.transportationMode = transportationMode;
     }
 
-    public LocalDate getDepartureDate() {
+    public String getDepartureDate() {
         return departureDate;
     }
 
-    public void setDepartureDate(LocalDate departureDate) {
+    public void setDepartureDate(String departureDate) {
         this.departureDate = departureDate;
     }
 
-    public LocalTime getDepartureTime() {
+    public String getDepartureTime() {
         return departureTime;
     }
 
-    public void setDepartureTime(LocalTime departureTime) {
+    public void setDepartureTime(String departureTime) {
         this.departureTime = departureTime;
     }
 
-    public LocalDate getArrivalDate() {
+    public String getArrivalDate() {
         return arrivalDate;
     }
 
-    public void setArrivalDate(LocalDate arrivalDate) {
+    public void setArrivalDate(String arrivalDate) {
         this.arrivalDate = arrivalDate;
     }
 

@@ -8,5 +8,5 @@ import java.util.List;
 public interface LocationRepo extends JpaRepository<Location,Long>{
 
     @Query( value= "SELECT * FROM Location" , nativeQuery = true)
-    List<Location> findAllLocation();
+    List<Location> findAllLocations();
 }

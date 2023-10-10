@@ -15,19 +15,18 @@ import jakarta.validation.constraints.Size;
 public class Address {
 
 
+    public Address() {
+       this("eg: Sesame street","eg: London"," eg: Greater London","eg :W1T");
+    }
 
 
-
-    public Address(long id, String street, String city, String county, String postCode) {
-        this.id = id;
+    public Address( String street, String city, String county, String postCode) {
         this.street = street;
         this.city = city;
         this.county = county;
         this.postCode = postCode;
     }
-    public Address() {
-//        this("eg: Sesame street","eg: London"," eg: Greater London","eg :W1T");
-    }
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -15,14 +15,8 @@ public class Programme {
     }
 
     public Programme(String title, String genre) {
-        Title = title;
-        Genre = genre;
-    }
-
-    public Programme(double latitude, double longitude, String title, String genre) {
-
-        Title = title;
-        Genre = genre;
+        this.title = title;
+        this.genre = genre;
     }
 
     @Id
@@ -31,11 +25,11 @@ public class Programme {
 
     @Size(min=0,max=30)
     @NotNull
-    private String Title;
+    private String title;
 
     @Size(min=0,max=30)
     @NotNull
-    private String Genre;
+    private String genre;
 
 
     @ManyToOne
@@ -55,23 +49,30 @@ public class Programme {
     }
 
     public String getTitle() {
-        return Title;
+        return title;
     }
 
     public void setTitle(String title) {
-        Title = title;
+        this.title = title;
     }
 
     public String getGenre() {
-        return Genre;
+        return genre;
     }
 
     public void setGenre(String genre) {
-        Genre = genre;
+        this.genre = genre;
     }
 
+    public Location getLocation() {
+        return location;
+    }
 
-//    - programmeID: int
+    public void setLocation(Location location) {
+        this.location = location;
+    }
+
+    //    - programmeID: int
 //- name: String
 //- genre: String
 //- location: Location

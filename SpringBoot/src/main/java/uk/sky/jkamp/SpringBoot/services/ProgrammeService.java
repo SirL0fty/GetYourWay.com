@@ -40,18 +40,19 @@ public class ProgrammeService {
     }
 
 
-    public List<Programme> findAllProgrammeByTitle()
+    public List<Programme> findAllProgrammeByTitle(String title)
     {
-        return this.programmeRepo.findProgrammeByTitle();
+        return this.programmeRepo.findProgrammeByTitle(title);
     }
 
-    public List<Programme> findAllProgrammeByGenre()
+    public List<Programme> findAllProgrammeByGenre(String genre
+    )
     {
-        return this.programmeRepo.findProgrammeByGenre();
+        return this.programmeRepo.findProgrammeByGenre(genre);
     }
-    public List<Programme> findAllProgrammeByGenreAndTitle()
+    public List<Programme> findAllProgrammeByGenreAndTitle(String title, String genre)
     {
-        return this.programmeRepo.findProgrammeByGenreAndTitle();
+        return this.programmeRepo.findProgrammeByGenreAndTitle(title,genre);
     }
 
 

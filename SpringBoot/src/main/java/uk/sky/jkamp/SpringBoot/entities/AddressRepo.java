@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.ArrayList;
 @Repository
 public interface AddressRepo extends JpaRepository<Address,Long> {
-    @Query( value= "SELECT * FROM  Address" , nativeQuery = true)
+    @Query( value= "SELECT * FROM  address" , nativeQuery = true)
     List<Address> findAllAddress();
 
 }
