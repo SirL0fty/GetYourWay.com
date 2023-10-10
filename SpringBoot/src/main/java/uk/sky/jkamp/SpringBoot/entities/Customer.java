@@ -16,6 +16,7 @@ import java.util.ArrayList;
 public class Customer  {
 
     public Customer() {
+        this("preeti","123@gmail.com",false);
 
     }
     public Customer( String name, String email, boolean hasEnabled2FA) {
@@ -25,29 +26,16 @@ public class Customer  {
         this.hasEnabled2FA = hasEnabled2FA;
     }
 
-    public Customer(String street, String city, String county,
-                    String postCode, String name, String email, boolean hasEnabled2FA) {
-        super();
-        this.name = name;
-        this.email = email;
-        this.hasEnabled2FA = hasEnabled2FA;
-    }
+
 
     // init the id
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // get and set for id
 
 
-    public Long getId() {
-        return id;
-    }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     //init the name
     @Size(min = 0, max = 28)
@@ -58,6 +46,13 @@ public class Customer  {
     @NotNull
     private String email;
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     private boolean hasEnabled2FA;
 

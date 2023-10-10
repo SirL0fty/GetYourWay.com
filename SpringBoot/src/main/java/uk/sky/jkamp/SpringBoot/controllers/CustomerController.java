@@ -14,6 +14,7 @@ import java.lang.System;
 @RestController
 public class CustomerController {
 
+
     private CustomerService customerservice;
     private CustomerRepo customerrepo;
     public CustomerController(CustomerService customerservice) {
@@ -31,9 +32,9 @@ public class CustomerController {
     }
 
     @GetMapping("/getAllCustomers")
-    public List<Customer> findAllCustomer() {
+    public List<Customer> findAllCustomers() {
 
-       return this.customerrepo.findAllCustomer();
+       return this.customerservice.findAllCustomers();
 
     }
 

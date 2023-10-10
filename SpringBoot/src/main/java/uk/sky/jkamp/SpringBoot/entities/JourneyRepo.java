@@ -8,6 +8,6 @@ import java.util.List;
 public interface JourneyRepo extends JpaRepository<Journey,Long>{
 
     @Query( value= "SELECT * FROM Journey" , nativeQuery = true)
-    List<Journey> findAllJourney();
+    List<Journey> findAllJourneys();
 
 }

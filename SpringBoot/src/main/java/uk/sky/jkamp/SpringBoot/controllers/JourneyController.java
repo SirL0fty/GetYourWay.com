@@ -29,10 +29,10 @@ public class JourneyController {
 
     }
 
-    @GetMapping("/getAllJourneys")
-    public List<Journey> getAllLJourney() {
+    @GetMapping("/findAllJourneys")
+    public List<Journey> findAllLJourneys() {
 
-        return this.journeyrepo.findAllJourney();
+        return this.journeysservice.findAllJourneys();
 
     }
 

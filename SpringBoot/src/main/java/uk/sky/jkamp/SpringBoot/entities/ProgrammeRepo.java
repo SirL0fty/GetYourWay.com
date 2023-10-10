@@ -13,15 +13,15 @@ public interface ProgrammeRepo extends JpaRepository<Programme,Long> {
     List<Programme> findAllProgramme();
 
 
-    @Query( value= "SELECT * FROM Programme where Title=?1" , nativeQuery = true)
-    List<Programme> findProgrammeByTitle();
+    @Query( value= "SELECT * FROM Programme where title=?1" , nativeQuery = true)
+    List<Programme> findProgrammeByTitle(String title);
 
 
    @Query( value= "SELECT * FROM Programme where genre=?1" , nativeQuery = true)
-    List<Programme> findProgrammeByGenre();
+    List<Programme> findProgrammeByGenre(String genre);
 
-    @Query( value= "SELECT * FROM Programme where genre=?1 and Title=?1" , nativeQuery = true)
-    List<Programme> findProgrammeByGenreAndTitle();
+    @Query( value= "SELECT * FROM Programme where genre=?2 and title=?1" , nativeQuery = true)
+    List<Programme> findProgrammeByGenreAndTitle(String title,String genre);
 
         }
 

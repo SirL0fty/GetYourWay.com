@@ -31,7 +31,7 @@ public class LocationController {
     @GetMapping("/getAllLocations")
     public List<Location> getAllLocation() {
 
-        return this.locationrepo.findAllLocation();
+        return this.locationsservice.findAllLocations();
 
     }
 

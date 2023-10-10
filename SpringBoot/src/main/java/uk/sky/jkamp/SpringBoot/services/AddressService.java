@@ -15,6 +15,10 @@ public class AddressService {
      private AddressRepo addressRepo;
      private List<Address> addresses=new ArrayList<>();
 
+     public AddressService(AddressRepo addressRepo) {
+         this.addressRepo = addressRepo;
+     }
+
      public  List<Address> findAllAddresses()
      {return this.addressRepo.findAllAddress();
      }

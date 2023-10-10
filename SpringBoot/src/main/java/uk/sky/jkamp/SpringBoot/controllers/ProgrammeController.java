@@ -36,25 +36,26 @@ public class ProgrammeController {
     }
 
     @GetMapping("/getAllProgrammebyTitle")
-    public List<Programme> getAllProgrammeByTitle() {
+    public List<Programme> getAllProgrammeByTitle(@RequestParam(value="title") String title)
+    {
 
-        return this.programmesservice.findAllProgrammeByTitle();
+        return this.programmesservice.findAllProgrammeByTitle(title);
 
     }
 
     @GetMapping("/getAllProgrammebyGenre")
-    public List<Programme> getAllProgrammeByGenre() {
+    public List<Programme> getAllProgrammeByGenre(@RequestParam(value="genre") String genre) {
 
-        return this.programmesservice.findAllProgrammeByGenre();
+        return this.programmesservice.findAllProgrammeByGenre(genre);
 
     }
 
 //    findAllProgrammeByGenreAndTitle()
 
     @GetMapping("/getAllProgrammebyGenreandTitle")
-    public List<Programme> getAllProgrammeByGenreAndTitle() {
+    public List<Programme> getAllProgrammeByGenreAndTitle(@RequestParam(value="title") String title,@RequestParam(value="genre") String genre) {
 
-        return this.programmesservice.findAllProgrammeByGenreAndTitle();
+        return this.programmesservice.findAllProgrammeByGenreAndTitle(title,genre);
 
     }
 

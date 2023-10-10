@@ -11,13 +11,13 @@ import java.util.Optional;
 @Service
 public class JourneyService {
 
+    public JourneyService(JourneyRepo journeyRepo) {
+        this.journeyRepo = journeyRepo;
+    }
 
     private JourneyRepo journeyRepo;
     private List<Journey> journeys = new ArrayList<>();
 
-    public List<Journey> findAllJourneys() {
-        return this.journeyRepo.findAllJourney();
-    }
 
     public Journey createJourney(@RequestBody @Valid Journey journey)
     {
@@ -25,4 +25,8 @@ public class JourneyService {
         return this.journeyRepo.save(journey);
 
     }
+    public List<Journey> findAllJourneys() {
+        return this.journeyRepo.findAllJourneys();
+    }
+
 }
