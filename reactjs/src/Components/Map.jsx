@@ -1,5 +1,6 @@
 import { React, useRef, useEffect, useState } from 'react'
 import mapboxgl from 'mapbox-gl';
+import { Marker } from 'mapbox-gl'
 import 'mapbox-gl/dist/mapbox-gl.css'
 import '../css/Map.css'
 
@@ -8,9 +9,37 @@ const Map = () => {
 
   const mapContainer = useRef(null);
   const map = useRef(null);
-  const [lng, setLng] = useState(-3.1883);
-  const [lat, setLat] = useState(55.9533);
-  const [zoom, setZoom] = useState(7);
+  const [lng, setLng] = useState(-5.0315);
+  const [lat, setLat] = useState(48.5841);
+  const [zoom, setZoom] = useState(3.2);
+
+  const geojson = {
+    type: 'FeatureCollection',
+    features: [
+      {
+        type: 'Feature',
+        geometry: {
+          type: 'Point',
+          coordinates: [7.0143, 43.5515]
+        },
+        properties: {
+          title: 'Mapbox',
+          description: 'Cannes, France'
+        }
+      },
+      {
+        type: 'Feature',
+        geometry: {
+          type: 'Point',
+          coordinates: [-0.1086, 51.5079]
+        },
+        properties: {
+          title: 'Mapbox',
+          description: 'London, United Kingdom'
+        }
+      }
+    ]
+  };
 
   useEffect(() => {
     if (map.current) return;
@@ -25,13 +54,23 @@ const Map = () => {
       setLng(map.current.getCenter().lng.toFixed(4));
       setLat(map.current.getCenter().lat.toFixed(4));
       setZoom(map.current.getZoom().toFixed(2));
-      });
+    });
+
+    map.current.on('load', () => {
+      for (const feature of geojson.features) {
+        const element = document.createElement('div');
+        element.className = 'marker';
+        new mapboxgl.Marker(element)
+          .setLngLat(feature.geometry.coordinates)
+          .addTo(map.current);
+      }
+    });
   });
 
   return (
     <>
       <div>
-        Longitude: {lng}, Latitude: {lat}
+        Latitude: {lat}, Longitude: {lng}
       </div>
       <div ref={mapContainer} className='map-container' />
     </>
