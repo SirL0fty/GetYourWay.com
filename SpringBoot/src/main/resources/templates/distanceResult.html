@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="">
+<head>
+    <meta charset="UTF-8">
+    <title>Distance Calculation Result</title>
+
+    <style>
+        .distance-value {
+            border: 1px solid black;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+<h1>Distance Calculation Result</h1>
+<p>The distance between the two locations is: <span th:text="${distance}"></span> miles</p>
+<p>The estimated travel time is: <span th:text="${travelTime}"></span> minutes</p>
+<p class="distance-value">Distance: <span th:text="${distance}"></span> miles</p>
+</body>
+</html>
