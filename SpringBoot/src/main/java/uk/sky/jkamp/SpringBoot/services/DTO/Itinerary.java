@@ -1,4 +1,4 @@
-package uk.sky.jkamp.SpringBoot.services;
+package uk.sky.jkamp.SpringBoot.services.DTO;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;

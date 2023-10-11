@@ -1,7 +1,7 @@
 package uk.sky.jkamp.SpringBoot.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import uk.sky.jkamp.SpringBoot.services.FlightDTO;
+import uk.sky.jkamp.SpringBoot.services.DTO.FlightDTO;
 import uk.sky.jkamp.SpringBoot.services.FlightService;
 
 import java.time.LocalDate;

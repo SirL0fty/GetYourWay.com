@@ -1,8 +1,8 @@
-package uk.sky.jkamp.SpringBoot.services;
+package uk.sky.jkamp.SpringBoot.services.DTO;
 
 import java.time.LocalDateTime;
 
-public class Departure {
+public class Arrival {
 
     private String iataCode;
     private String terminal;

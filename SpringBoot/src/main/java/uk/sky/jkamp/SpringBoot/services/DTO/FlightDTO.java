@@ -1,11 +1,15 @@
-package uk.sky.jkamp.SpringBoot.services;
+package uk.sky.jkamp.SpringBoot.services.DTO;
 
 import lombok.Getter;
+import uk.sky.jkamp.SpringBoot.services.DTO.Itinerary;
+
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Getter
 public class FlightDTO {
+
+    private String id;
     private String airline;
     private String flightNumber;
     private String origin;
@@ -38,6 +42,14 @@ public class FlightDTO {
     }
 
     public FlightDTO() {
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public void setAirline(String airline) {

@@ -1,9 +1,7 @@
-package uk.sky.jkamp.SpringBoot.services;
+package uk.sky.jkamp.SpringBoot.services.DTO;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-
-import java.util.List;
+import uk.sky.jkamp.SpringBoot.services.DTO.Arrival;
+import uk.sky.jkamp.SpringBoot.services.DTO.Departure;
 
 public class Segment {
 

@@ -3,6 +3,8 @@ package uk.sky.jkamp.SpringBoot.services;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
+import uk.sky.jkamp.SpringBoot.services.DTO.FlightDTO;
+
 import java.util.List;
 
 @Getter
