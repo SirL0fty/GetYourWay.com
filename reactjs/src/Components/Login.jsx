@@ -3,7 +3,6 @@ import 'bootstrap/dist/css/bootstrap.css';
 import '../css/Login.css';
 import getYourWayLogo from '../images/IMG-7504.jpg'
 
-
 // const salt = bcrypt.genSaltSync(10);
 
 const Login = () => {
