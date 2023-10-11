@@ -8,8 +8,8 @@ const Map = () => {
 
   const mapContainer = useRef(null);
   const map = useRef(null);
-  const [longitude, setLongitude] = useState(-3.1883);
-  const [latitude, setLatitude] = useState(55.9533);
+  const [lng, setLng] = useState(-3.1883);
+  const [lat, setLat] = useState(55.9533);
   const [zoom, setZoom] = useState(7);
 
   useEffect(() => {
@@ -17,13 +17,22 @@ const Map = () => {
     map.current = new mapboxgl.Map({
       container: mapContainer.current,
       style: 'mapbox://styles/mapbox/streets-v12',
-      center: [longitude, latitude],
+      center: [lng, lat],
       zoom: zoom
     });
+
+    map.current.on('move', () => {
+      setLng(map.current.getCenter().lng.toFixed(4));
+      setLat(map.current.getCenter().lat.toFixed(4));
+      setZoom(map.current.getZoom().toFixed(2));
+      });
   });
 
   return (
     <>
+      <div>
+        Longitude: {lng}, Latitude: {lat}
+      </div>
       <div ref={mapContainer} className='map-container' />
     </>
   )
