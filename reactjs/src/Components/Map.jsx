@@ -1,6 +1,5 @@
 import { React, useRef, useEffect, useState } from 'react'
 import mapboxgl from 'mapbox-gl';
-import { Marker } from 'mapbox-gl'
 import 'mapbox-gl/dist/mapbox-gl.css'
 import '../css/Map.css'
 
@@ -23,7 +22,7 @@ const Map = () => {
           coordinates: [7.0143, 43.5515]
         },
         properties: {
-          title: 'Mapbox',
+          title: 'Programme 1',
           description: 'Cannes, France'
         }
       },
@@ -34,7 +33,7 @@ const Map = () => {
           coordinates: [-0.1086, 51.5079]
         },
         properties: {
-          title: 'Mapbox',
+          title: 'Programme 2',
           description: 'London, United Kingdom'
         }
       }
@@ -62,6 +61,12 @@ const Map = () => {
         element.className = 'marker';
         new mapboxgl.Marker(element)
           .setLngLat(feature.geometry.coordinates)
+          .setPopup(
+            new mapboxgl.Popup({ offset: 25 })
+              .setHTML(
+                `<p>${feature.properties.title}</p><p>${feature.properties.description}</p>`
+              )
+          )
           .addTo(map.current);
       }
     });
