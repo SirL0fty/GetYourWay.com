@@ -1,5 +1,6 @@
 package uk.sky.jkamp.SpringBoot.services;
 
+import com.amadeus.Airline;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
@@ -9,6 +10,7 @@ import org.springframework.web.reactive.function.client.WebClientResponseExcepti
 import org.springframework.web.util.UriComponentsBuilder;
 import uk.sky.jkamp.SpringBoot.exceptions.FlightNotFoundException;
 import uk.sky.jkamp.SpringBoot.exceptions.FlightServiceException;
+import uk.sky.jkamp.SpringBoot.services.DTO.Segment;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

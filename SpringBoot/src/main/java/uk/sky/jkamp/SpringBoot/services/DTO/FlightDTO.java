@@ -9,32 +9,32 @@ import java.util.List;
 @Getter
 public class FlightDTO {
 
+    @Getter
+    private String type;
+    @Getter
+    private String source;
+    @Getter
     private String id;
-    private String airline;
-    private String flightNumber;
-    private String origin;
-    private String destination;
-    private LocalDateTime departureDateTime;
-    private LocalDateTime arrivalDateTime;
     private Price price; // Updated to use the Price class
 
 
+    @Getter
     private List<Itinerary> itineraries;
 
 
-    public FlightDTO(String airline, String flightNumber, String origin, String destination,
+    public FlightDTO(String id, String source, String airline, String flightNumber, String origin, String destination,
                      LocalDateTime departureDateTime, LocalDateTime arrivalDateTime, Price price) {
-        this.airline = airline;
-        this.flightNumber = flightNumber;
-        this.origin = origin;
-        this.destination = destination;
-        this.departureDateTime = departureDateTime;
-        this.arrivalDateTime = arrivalDateTime;
+        this.id = id;
+        this.source = source;
         this.price = price;
     }
 
-    public List<Itinerary> getItineraries() {
-        return itineraries;
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public void setSource(String source) {
+        this.source = source;
     }
 
     public void setItineraries(List<Itinerary> itineraries) {
@@ -44,38 +44,9 @@ public class FlightDTO {
     public FlightDTO() {
     }
 
-    public String getId() {
-        return id;
-    }
-
     public void setId(String id) {
         this.id = id;
     }
-
-    public void setAirline(String airline) {
-        this.airline = airline;
-    }
-
-    public void setFlightNumber(String flightNumber) {
-        this.flightNumber = flightNumber;
-    }
-
-    public void setOrigin(String origin) {
-        this.origin = origin;
-    }
-
-    public void setDestination(String destination) {
-        this.destination = destination;
-    }
-
-    public void setDepartureDateTime(LocalDateTime departureDateTime) {
-        this.departureDateTime = departureDateTime;
-    }
-
-    public void setArrivalDateTime(LocalDateTime arrivalDateTime) {
-        this.arrivalDateTime = arrivalDateTime;
-    }
-
     public void setPrice(Price price) {
         this.price = price;
     }

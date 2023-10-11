@@ -1,12 +1,29 @@
 package uk.sky.jkamp.SpringBoot.services.DTO;
 
-import uk.sky.jkamp.SpringBoot.services.DTO.Arrival;
-import uk.sky.jkamp.SpringBoot.services.DTO.Departure;
 
 public class Segment {
 
     private Departure departure;
     private Arrival arrival;
+
+    private String carrierCode;
+    private String number;
+
+    public String getCarrierCode() {
+        return carrierCode;
+    }
+
+    public void setCarrierCode(String carrierCode) {
+        this.carrierCode = carrierCode;
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
+    }
 
     public Departure getDeparture() {
         return departure;
