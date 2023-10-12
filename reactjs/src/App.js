@@ -11,6 +11,7 @@ function App() {
       <Login />
       <Footer />
     </div>
+
   );
 }
 
