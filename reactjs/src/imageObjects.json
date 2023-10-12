@@ -1,85 +1,85 @@
  {
-    [{
-        programmeName: "Riviera",
-        imageSource: 'src/images/TVShowImages/riviera.png',
-        longitude: 43.262641,
-        latitude: 6.653473
+    "programmes": [{
+        "programmeName": "Riviera",
+        "imageSource": "src/images/TVShowImages/riviera.png",
+        "longitude": 43.262641,
+        "latitude": 6.653473
     },
 
     {
-        programmeName: "Man United Vs Man City",
-        imageSource: 'src/images/TVShowImages/manUtd.png',
-        longitude: 53.462612,
-        latitude: -2.291352
+        "programmeName": "Man United Vs Man City",
+        "imageSource": "src/images/TVShowImages/manUtd.png",
+        "longitude": 53.462612,
+        "latitude": -2.291352
     },
 
      {
-        programmeName: "Ryder Cup",
-        imageSource: 'src/images/TVShowImages/ryderCup.png',
-        longitude: 41.961554,
-        latitude: 12.632083
+        "programmeName": "Ryder Cup",
+        "imageSource": "src/images/TVShowImages/ryderCup.png",
+        "longitude": 41.961554,
+        "latitude": 12.632083
     },
 
      {
-        programmeName: "Tennis US Open",
-        imageSource: 'src/images/TVShowImages/usOpen.png',
-        longitude: 40.750832,
-        latitude: -73.845540
+        "programmeName": "Tennis US Open",
+        "imageSource": "src/images/TVShowImages/usOpen.png",
+        "longitude": 40.750832,
+        "latitude": -73.845540
     },
 
      {
-        programmeName: "Monaco Grand Prix",
-        imageSource: 'src/images/TVShowImages/monacoGP.png',
-        longitude: 43.734094,
-        latitude: 7.421669
+        "programmeName": "Monaco Grand Prix",
+        "imageSource": "src/images/TVShowImages/monacoGP.png",
+        "longitude": 43.734094,
+        "latitude": 7.421669
     },
 
      {
-        programmeName: "Man City Vs Man United",
-        imageSource: 'src/images/TVShowImages/manCity.png',
-        longitude: 53.481277,
-        latitude: -2.191166
+        "programmeName": "Man City Vs Man United",
+        "imageSource": "src/images/TVShowImages/manCity.png",
+        "longitude": 53.481277,
+        "latitude": -2.191166
     },
 
      {
-        programmeName: "Champions League (Final 2024)",
-        imageSource: 'src/images/TVShowImages/champLeague.png',
-        longitude: 51.555815,
-        latitude: -0.279984
+        "programmeName": "Champions League (Final 2024)",
+        "imageSource": "src/images/TVShowImages/champLeague.png",
+        "longitude": 51.555815,
+        "latitude": -0.279984
     },
 
      {
-        programmeName: "Galapagos with David Attenborough",
-        imageSource: 'src/images/TVShowImages/galapagos.png', 
-        longitude: -0.794935,
-        latitude: -91.09465
+        "programmeName": "Galapagos with David Attenborough",
+        "imageSource": "src/images/TVShowImages/galapagos.png", 
+        "longitude": -0.794935,
+        "latitude": -91.09465
     },
 
      {
-        programmeName: "Kalahari: Land of Secret Alliances",
-        imageSource: 'src/images/TVShowImages/kalahari.png',
-        longitude: -22.514038,
-        latitude:  17.134017
+        "programmeName": "Kalahari: Land of Secret Alliances",
+        "imageSource": "src/images/TVShowImages/kalahari.png",
+        "longitude": -22.514038,
+        "latitude":  17.134017
     },
 
 
     {
 
-        programmeName: "Surviving The Amazon",
-        imageSource: 'src/images/TVShowImages/amazon.png',
-        longitude: -3.146308,
-        latitude: -59.995768
+        "programmeName": "Surviving The Amazon",
+        "imageSource": "src/images/TVShowImages/amazon.png",
+        "longitude": -3.146308,
+        "latitude": -59.995768
     },
 
      {
-        programmeName: "8 Days That Made Rome",
-        imageSource: 'src/images/TVShowImages/rome.png',
-        longitude: 41.902322,
-        latitude: 12.499057
+        "programmeName": "8 Days That Made Rome",
+        "imageSource": "src/images/TVShowImages/rome.png",
+        "longitude": 41.902322,
+        "latitude": 12.499057
     },
 
     {
-        programmeName: "Titanic: A Dead Reckoning",
+        "programmeName": "Titanic: A Dead Reckoning",
         "imageSource": "src/images/TVShowImages/titanic.png",
         "longitude": 54.607530,
         "latitude": -5.909904
@@ -93,8 +93,8 @@
     },
 
       {
-        "programmeName": "Attilla's Forbidden Tomb",
-        "imageSource": "src/images/TVShowImages/attilla.png",
+        "programmeName": "Attila's Forbidden Tomb",
+        "imageSource": "src/images/TVShowImages/attila.png",
         "longitude": 47.432123,
         "latitude": 19.267896
     },
@@ -113,3 +113,7 @@
         "latitude": -5.743542
     }]
  }
+
+
+
+ 
