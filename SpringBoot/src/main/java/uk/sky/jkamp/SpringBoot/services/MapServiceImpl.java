@@ -70,30 +70,32 @@ public class MapServiceImpl implements MapService {
     }
 
     @Override
-    public int estimateTravelTime(Location origin, Location destination, TravelMode travelMode) {
+    public String estimateTravelTime(Location origin, Location destination, TravelMode travelMode) {
         try {
             GeoApiContext context = new GeoApiContext.Builder().apiKey(googleMapsApiKey).build();
 
-            DirectionsApiRequest request = DirectionsApi.newRequest(context) // Create a DirectionsApiRequest object
-                    .origin(new com.google.maps.model.LatLng(origin.getLatitude(), origin.getLongitude())) // Set the origin
-                    .destination(new com.google.maps.model.LatLng(destination.getLatitude(), destination.getLongitude())) // Set the destination
-                    .mode(travelMode); // Use the provided TravelMode
+            DirectionsApiRequest request = DirectionsApi.newRequest(context)
+                    .origin(new com.google.maps.model.LatLng(origin.getLatitude(), origin.getLongitude()))
+                    .destination(new com.google.maps.model.LatLng(destination.getLatitude(), destination.getLongitude()))
+                    .mode(travelMode);
 
             DirectionsResult routes = request.await();
 
             if (routes != null && routes.routes.length > 0) {
                 DirectionsLeg leg = routes.routes[0].legs[0];
-                return (int) Math.round(leg.duration.inSeconds / 60.0); // Return the travel time in minutes
+                return String.valueOf(Math.round(leg.duration.inSeconds / 3600.0));
             } else {
-                return -1; // Handle no routes found
+                return "-1";
             }
         } catch (InterruptedException e) {
-            // Restore interrupted status
             Thread.currentThread().interrupt();
-            return -1; // Handle interruption
+            // Log the exception instead of printing the stack trace
+            // logger.error("Interrupted exception occurred", e);
+            return "-1";
         } catch (Exception e) {
-            e.printStackTrace();
-            return -1; // Handle other exceptions
+            // Log the exception instead of printing the stack trace
+            // logger.error("Exception occurred", e);
+            return "-1";
         }
     }
 }
