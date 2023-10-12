@@ -9,6 +9,9 @@
   border-radius: 5px;
 }
 
+label {
+  font-weight: bold;
+}
 .form-row {
   display: flex;
   flex-wrap: wrap;
@@ -16,7 +19,7 @@
 }
 
 .form-group {
-  /* flex: 0 0 calc(50% - 10px); */
+  flex: 0 0 calc(50% - 10px);
   margin-bottom: 10px;
 }
 

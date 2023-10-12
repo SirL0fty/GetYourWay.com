@@ -30,4 +30,7 @@ public class LocationService {
     }
 
 
+    public List<Location> findLocationById(Long id) {
+        return this.locationRepo.findLocationById(id);
+    }
 }

@@ -36,9 +36,8 @@ public class ProgrammeService {
 
     public List<Programme> findAllProgrammes()
     {
-        return this.programmeRepo.findAllProgramme();
+        return this.programmeRepo.findAll();
     }
-
 
     public List<Programme> findAllProgrammeByTitle(String title)
     {
