@@ -7,6 +7,9 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { faMap } from "@fortawesome/free-regular-svg-icons";
 import "../css/FlightSearch.css";
+import dotenv from "dotenv";
+
+dotenv.config(); // Load the environment variables from the .env file
 
 const FlightSearchForm = () => {
   const [origin, setOrigin] = useState("");
@@ -16,13 +19,52 @@ const FlightSearchForm = () => {
   const [children, setChildren] = useState(0);
   const [destinationOptions, setDestinationOptions] = useState([]);
 
-  // Simulate fetching destination options from an API (you need to replace this with an actual API call)
+  const mysql = require("mysql2/promise");
+
+  async function getTvShowsWithDestinations() {
+    // Create a connection pool to the MySQL database using the environment variables
+    const pool = await mysql.createPool({
+      host: process.env.DB_HOST,
+      user: process.env.DB_USER,
+      password: process.env.DB_PASSWORD,
+      database: process.env.DB_DATABASE,
+      waitForConnections: true,
+      connectionLimit: 10,
+      queueLimit: 0,
+    });
+
+    // Execute a SQL query to retrieve TV shows with destination coordinates
+    const [rows] = await pool.query(`
+      SELECT tv_shows.id, tv_shows.title, destinations.latitude, destinations.longitude
+      FROM tv_shows
+      JOIN destinations ON tv_shows.destination_id = destinations.id
+      WHERE tv_shows.destination_id IS NOT NULL
+        AND destinations.latitude IS NOT NULL
+        AND destinations.longitude IS NOT NULL
+    `);
+
+    // Map over the result set to create an array of TV show objects with destination coordinates
+    const tvShows = rows.map((row) => ({
+      id: row.id,
+      title: row.title,
+      latitude: row.latitude,
+      longitude: row.longitude,
+    }));
+
+    // Release the connection pool
+    await pool.end();
+
+    return tvShows;
+  }
+
   useEffect(() => {
     const fetchDestinationOptions = async () => {
-      // Replace this with your actual API endpoint
-      const response = await fetch("your-api-endpoint");
-      const data = await response.json();
-      setDestinationOptions(data);
+      try {
+        const data = await getTvShowsWithDestinations();
+        setDestinationOptions(data);
+      } catch (error) {
+        console.error(error);
+      }
     };
 
     fetchDestinationOptions();
