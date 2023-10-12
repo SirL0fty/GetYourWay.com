@@ -1,12 +1,27 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faPlane,
   faCalendarAlt,
   faUser,
+  faLocationArrow,
 } from "@fortawesome/free-solid-svg-icons";
 import { faMap } from "@fortawesome/free-regular-svg-icons";
 import "../css/FlightSearch.css";
+
+const FlightList = ({ flights }) => (
+  <div className="flight-list">
+    <h2>Flights</h2>
+    <ul>
+      {flights.map((flight) => (
+        <li key={flight.id}>
+          {/* Display flight information here */}
+          {flight.origin} to {flight.destination} on {flight.departureDate}
+        </li>
+      ))}
+    </ul>
+  </div>
+);
 
 const FlightSearchForm = () => {
   const [origin, setOrigin] = useState("");
@@ -15,10 +30,53 @@ const FlightSearchForm = () => {
   const [adults, setAdults] = useState(1);
   const [children, setChildren] = useState(0);
   const [destinationOptions, setDestinationOptions] = useState([]);
+  const [flightResults, setFlightResults] = useState([]);
 
-  const handleSubmit = (event) => {
+  // Function to fetch the user's location
+  const handleGetLocation = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          // Get the user's latitude and longitude
+          const userLatitude = position.coords.latitude.toFixed(4);
+          const userLongitude = position.coords.longitude.toFixed(4);
+          setOrigin(`${userLatitude}, ${userLongitude}`);
+        },
+        (error) => {
+          console.error(error);
+          alert("Failed to fetch location. Please try again later.");
+        }
+      );
+    } else {
+      alert("Geolocation is not supported by your browser.");
+    }
+  };
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // Submit the form data to your API
+
+    const queryParams = new URLSearchParams({
+      origin,
+      destination,
+      departureDate,
+      adults,
+      children,
+    });
+
+    try {
+      const response = await fetch(
+        `http://localhost:8081/api/flights/search?${queryParams}`
+      );
+      if (response.ok) {
+        const data = await response.json();
+        setFlightResults(data);
+
+        console.log(data);
+      } else {
+        console.error("API request failed");
+      }
+    } catch (error) {
+      console.error("An error occurred while making the API request:", error);
+    }
   };
 
   return (
@@ -38,6 +96,11 @@ const FlightSearchForm = () => {
                 value={origin}
                 onChange={(e) => setOrigin(e.target.value)}
                 disabled
+              />
+              <FontAwesomeIcon
+                icon={faLocationArrow} // Use the location icon here
+                className="location-icon"
+                onClick={handleGetLocation} // Add an onClick handler for the icon
               />
             </div>
           </div>
@@ -125,6 +188,7 @@ const FlightSearchForm = () => {
           Search Flights
         </button>
       </form>
+      {flightResults.length > 0 && <FlightList flights={flightResults} />}
     </>
   );
 };
