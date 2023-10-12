@@ -35,7 +35,11 @@ public class LocationController {
 
     }
 
+    @GetMapping("/getLocationbyId")
+    public List<Location> getLocationById(@RequestParam(value="id") Long id) {
+            return this.locationsservice.findLocationById(id);
 
+    }
 
 }
 

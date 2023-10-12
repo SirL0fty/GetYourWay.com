@@ -1,15 +1,28 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faPlane,
   faCalendarAlt,
   faUser,
+  faLocationArrow,
 } from "@fortawesome/free-solid-svg-icons";
 import { faMap } from "@fortawesome/free-regular-svg-icons";
 import "../css/FlightSearch.css";
-import dotenv from "dotenv";
+import axios from "axios";
 
-dotenv.config(); // Load the environment variables from the .env file
+const FlightList = ({ flights }) => (
+  <div className="flight-list">
+    <h2>Flights</h2>
+    <ul>
+      {flights.map((flight) => (
+        <li key={flight.id}>
+          {/* Display flight information here */}
+          {flight.origin} to {flight.destination} on {flight.departureDate}
+        </li>
+      ))}
+    </ul>
+  </div>
+);
 
 const FlightSearchForm = () => {
   const [origin, setOrigin] = useState("");
@@ -18,67 +31,96 @@ const FlightSearchForm = () => {
   const [adults, setAdults] = useState(1);
   const [children, setChildren] = useState(0);
   const [destinationOptions, setDestinationOptions] = useState([]);
+  const [flightResults, setFlightResults] = useState([]);
+  const [locations, setLocations] = useState([]); // Add a new state variable for locations
+  const [loading, setLoading] = useState(false);
+  const [destinationId, setDestinationId] = useState("");
 
-  const mysql = require("mysql2/promise");
-
-  async function getTvShowsWithDestinations() {
-    // Create a connection pool to the MySQL database using the environment variables
-    const pool = await mysql.createPool({
-      host: process.env.DB_HOST,
-      user: process.env.DB_USER,
-      password: process.env.DB_PASSWORD,
-      database: process.env.DB_DATABASE,
-      waitForConnections: true,
-      connectionLimit: 10,
-      queueLimit: 0,
-    });
-
-    // Execute a SQL query to retrieve TV shows with destination coordinates
-    const [rows] = await pool.query(`
-      SELECT tv_shows.id, tv_shows.title, destinations.latitude, destinations.longitude
-      FROM tv_shows
-      JOIN destinations ON tv_shows.destination_id = destinations.id
-      WHERE tv_shows.destination_id IS NOT NULL
-        AND destinations.latitude IS NOT NULL
-        AND destinations.longitude IS NOT NULL
-    `);
-
-    // Map over the result set to create an array of TV show objects with destination coordinates
-    const tvShows = rows.map((row) => ({
-      id: row.id,
-      title: row.title,
-      latitude: row.latitude,
-      longitude: row.longitude,
-    }));
-
-    // Release the connection pool
-    await pool.end();
-
-    return tvShows;
-  }
+  /*
+  This code uses the useEffect hook to get all programmes from the server and set the locations state to the result.
+*/
 
   useEffect(() => {
-    const fetchDestinationOptions = async () => {
-      try {
-        const data = await getTvShowsWithDestinations();
-        setDestinationOptions(data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchDestinationOptions();
+    axios
+      .get("http://localhost:8081/getAllProgramme")
+      .then((response) => {
+        setLocations(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }, []);
 
-  const handleSubmit = (event) => {
+  useEffect(() => {
+    axios
+      .get("http://localhost:8081/getLocationbyId")
+      .then((response) => {
+        setDestinationId(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
+  // Function to fetch the user's location
+  const handleGetLocation = () => {
+    setOrigin("Please wait obtaining your location..."); // Set the origin state to the loading message
+
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const userLatitude = position.coords.latitude.toFixed(4);
+          const userLongitude = position.coords.longitude.toFixed(4);
+          setOrigin(`${userLatitude}, ${userLongitude}`); // Update the origin state with the success coordinates
+          setLoading(false);
+        },
+        (error) => {
+          console.error(error);
+          alert("Failed to fetch location. Please try again later.");
+          setOrigin("Failed to fetch location"); // Set the origin state to an error message
+          setLoading(false);
+        }
+      );
+    } else {
+      alert("Geolocation is not supported by your browser.");
+      setOrigin("Geolocation not supported"); // Set the origin state to a message indicating geolocation is not supported
+      setLoading(false);
+    }
+  };
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // Submit the form data to your API
+
+    const queryParams = new URLSearchParams({
+      origin,
+      destination,
+      departureDate,
+      adults,
+      children,
+    });
+
+    try {
+      const response = await fetch(
+        `http://localhost:8081/api/flights/search?${queryParams}`
+      );
+      if (response.ok) {
+        const data = await response.json();
+        setFlightResults(data);
+
+        console.log(data);
+      } else {
+        console.error("API request failed");
+      }
+    } catch (error) {
+      console.error("An error occurred while making the API request:", error);
+    }
   };
 
   return (
     <>
       <form className="flight-search-form" onSubmit={handleSubmit}>
         <div className="side-by-side">
+          <h2 className="title">Flight Search</h2>
           <div className="form-group">
             <label htmlFor="origin">Origin (auto-detected)</label>
             <div className="input-icon">
@@ -89,9 +131,14 @@ const FlightSearchForm = () => {
                 id="origin"
                 className="input"
                 placeholder="Origin"
-                value={origin}
+                value={origin} // Set the value of the input field to the origin state
                 onChange={(e) => setOrigin(e.target.value)}
                 disabled
+              />
+              <FontAwesomeIcon
+                icon={faLocationArrow}
+                className="location-icon"
+                onClick={handleGetLocation}
               />
             </div>
           </div>
@@ -108,9 +155,9 @@ const FlightSearchForm = () => {
                 onChange={(e) => setDestination(e.target.value)}
               >
                 <option value="">Select a destination</option>
-                {destinationOptions.map((option) => (
-                  <option key={option.id} value={option.id}>
-                    {option.name}
+                {locations.map((option) => (
+                  <option key={option.id} value={option.location.id}>
+                    {option.title} - {option.genre}
                   </option>
                 ))}
               </select>
@@ -179,6 +226,7 @@ const FlightSearchForm = () => {
           Search Flights
         </button>
       </form>
+      {flightResults.length > 0 && <FlightList flights={flightResults} />}
     </>
   );
 };

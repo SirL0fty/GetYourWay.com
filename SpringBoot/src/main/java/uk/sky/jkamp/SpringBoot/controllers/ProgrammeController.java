@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.io.*;
 import java.lang.System;
 @RestController
+@CrossOrigin
 public class ProgrammeController {
 
     private ProgrammeService programmesservice;
@@ -34,7 +35,6 @@ public class ProgrammeController {
         return this.programmesservice.findAllProgrammes();
 
     }
-
     @GetMapping("/getAllProgrammebyTitle")
     public List<Programme> getAllProgrammeByTitle(@RequestParam(value="title") String title)
     {

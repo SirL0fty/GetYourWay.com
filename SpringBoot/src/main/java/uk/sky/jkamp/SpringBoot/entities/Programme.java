@@ -11,7 +11,6 @@ import org.springframework.context.annotation.Bean;
 public class Programme {
 
     public Programme() {
-        this("American Horror Story","Horror");
     }
 
     public Programme(String title, String genre) {

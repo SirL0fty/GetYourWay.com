@@ -9,4 +9,8 @@ public interface LocationRepo extends JpaRepository<Location,Long>{
 
     @Query( value= "SELECT * FROM Location" , nativeQuery = true)
     List<Location> findAllLocations();
+
+    @Query( value= "SELECT * FROM Location WHERE id = ?1" , nativeQuery = true)
+    List<Location> findLocationById(Long id);
+
 }

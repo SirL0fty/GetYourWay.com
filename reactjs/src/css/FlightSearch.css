@@ -2,13 +2,16 @@
 
 .flight-search-form {
   max-width: 800px;
-  margin: 0 auto;
+  margin: 20px auto;
   padding: 20px;
   background: #ffffff;
   border: 2px solid #f4f4f4;
   border-radius: 5px;
 }
 
+label {
+  font-weight: bold;
+}
 .form-row {
   display: flex;
   flex-wrap: wrap;
@@ -16,7 +19,7 @@
 }
 
 .form-group {
-  /* flex: 0 0 calc(50% - 10px); */
+  flex: 0 0 calc(50% - 10px);
   margin-bottom: 10px;
 }
 
@@ -39,6 +42,18 @@
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
+  flex: 1;
+}
+
+.input-container {
+  display: flex;
+  align-items: center;
+}
+
+.location-icon {
+  cursor: pointer;
+  margin-left: 10px;
+  color: #0074d9;
 }
 
 .select {

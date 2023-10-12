@@ -27,8 +27,6 @@ public class Location{
         this.longitude = longitude;
     }
 
-
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
