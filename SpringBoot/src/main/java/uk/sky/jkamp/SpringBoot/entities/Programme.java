@@ -22,12 +22,10 @@ public class Programme {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-
-    @Size(min=0,max=30)
+    
     @NotNull
     private String title;
 
-    @Size(min=0,max=30)
     @NotNull
     private String genre;
 
