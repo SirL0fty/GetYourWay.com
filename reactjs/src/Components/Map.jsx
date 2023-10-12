@@ -4,7 +4,7 @@ import 'mapbox-gl/dist/mapbox-gl.css'
 import axios from 'axios';
 import '../css/Map.css'
 
-const Map = () => {
+const Map = (props) => {
   mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_API_KEY;
 
   const mapContainer = useRef(null);
@@ -13,10 +13,6 @@ const Map = () => {
   const [lng, setLng] = useState(-5.0315);
   const [lat, setLat] = useState(48.5841);
   const [zoom, setZoom] = useState(3.2);
-
-  // State for user coordinates is set to invalid coordinates as initial values
-  const [userLongitude, setUserLongitude] = useState(999.00);
-  const [userLatitude, setUserLatitude] = useState(999.00);
 
   const [programmes, setProgrammes] = useState([]);
 
@@ -73,8 +69,8 @@ const Map = () => {
       map.current.addControl(geolocate);
 
       geolocate.on("geolocate", (e) => {
-        setUserLongitude(e.coords.longitude.toFixed(4));
-        setUserLatitude(e.coords.latitude.toFixed(4));
+        props.setUserLongitude(e.coords.longitude.toFixed(4));
+        props.setUserLatitude(e.coords.latitude.toFixed(4));
       });
 
       map.current.on('move', () => {
