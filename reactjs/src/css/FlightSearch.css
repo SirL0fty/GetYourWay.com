@@ -1,0 +1,63 @@
+/* FlightSearch.css */
+
+.flight-search-form {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background: #ffffff;
+  border: 2px solid #f4f4f4;
+  border-radius: 5px;
+}
+
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.form-group {
+  /* flex: 0 0 calc(50% - 10px); */
+  margin-bottom: 10px;
+}
+
+.input-icon {
+  display: flex;
+  align-items: center;
+}
+
+.circle-icon {
+  font-size: 20px;
+  border: 1px solid #ccc;
+  background-color: #f4f4f4;
+  border-radius: 50%;
+  padding: 10px;
+  margin: 10px;
+}
+
+.input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.button {
+  background: #0074d9;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.button:hover {
+  background: #0056a1;
+}
