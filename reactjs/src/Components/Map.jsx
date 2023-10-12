@@ -1,6 +1,7 @@
 import { React, useRef, useEffect, useState } from 'react'
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css'
+import axios from 'axios';
 import '../css/Map.css'
 
 const Map = () => {
@@ -16,6 +17,8 @@ const Map = () => {
   // State for user coordinates is set to invalid coordinates as initial values
   const [userLongitude, setUserLongitude] = useState(999.00);
   const [userLatitude, setUserLatitude] = useState(999.00);
+
+  const [programmes, setProgrammes] = useState([]);
 
   const geojson = {
     type: 'FeatureCollection',
@@ -46,52 +49,58 @@ const Map = () => {
   };
 
   useEffect(() => {
-    if (map.current) return;
-    map.current = new mapboxgl.Map({
-      container: mapContainer.current,
-      style: 'mapbox://styles/mapbox/streets-v12',
-      center: [lng, lat],
-      zoom: zoom
-    });
+    const initialiseMap = async () => {
+      if (map.current) {
+        return
+      }
 
-    // Obtains the user's current location if the user has allowed it
-    let geolocate = new mapboxgl.GeolocateControl({
-      positionOptions: {
-        enableHighAccuracy: true
-      },
-      trackUserLocation: true,
-      showUserHeading: true
-    })
+      map.current = new mapboxgl.Map({
+        container: mapContainer.current,
+        style: 'mapbox://styles/mapbox/streets-v12',
+        center: [lng, lat],
+        zoom: zoom
+      });
 
-    map.current.addControl(geolocate);
+      // Obtains the user's current location if the user has allowed it
+      let geolocate = new mapboxgl.GeolocateControl({
+        positionOptions: {
+          enableHighAccuracy: true
+        },
+        trackUserLocation: true,
+        showUserHeading: true
+      })
 
-    geolocate.on("geolocate", (e) => {
-      setUserLongitude(e.coords.longitude.toFixed(4));
-      setUserLatitude(e.coords.latitude.toFixed(4));
-    });
+      map.current.addControl(geolocate);
 
-    map.current.on('move', () => {
-      setLng(map.current.getCenter().lng.toFixed(4));
-      setLat(map.current.getCenter().lat.toFixed(4));
-      setZoom(map.current.getZoom().toFixed(2));
-    });
+      geolocate.on("geolocate", (e) => {
+        setUserLongitude(e.coords.longitude.toFixed(4));
+        setUserLatitude(e.coords.latitude.toFixed(4));
+      });
 
-    map.current.on('load', () => {
-      for (const feature of geojson.features) {
+      map.current.on('move', () => {
+        setLng(map.current.getCenter().lng.toFixed(4));
+        setLat(map.current.getCenter().lat.toFixed(4));
+        setZoom(map.current.getZoom().toFixed(2));
+      });
+
+      const response = await axios.get("http://localhost:8081/getAllProgramme", { withCredentials: true })
+
+      for (const programme of response.data) {
         const element = document.createElement('div');
         element.className = 'marker';
         new mapboxgl.Marker(element)
-          .setLngLat(feature.geometry.coordinates)
+          .setLngLat([programme.location.longitude, programme.location.latitude])
           .setPopup(
             new mapboxgl.Popup({ offset: 25 })
               .setHTML(
-                `<p>${feature.properties.title}</p><p>${feature.properties.description}</p>`
+                `<p>${programme.title}</p><p>${programme.genre}</p>`
               )
           )
           .addTo(map.current);
       }
-    });
-  });
+    }
+    initialiseMap();
+  }, []);
 
   return (
     <>
