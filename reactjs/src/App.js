@@ -1,11 +1,11 @@
 import "./App.css";
-import { useState } from 'react';
+import { useState } from "react";
 import Header from "./Components/Header";
 import Login from "./Components/Login";
 import Footer from "./Components/Footer";
-import Map from "./Components/Map";
 import FlightSearch from "./Components/FlightSearch";
 import Weather from "./Components/Weather";
+import Map from "./Components/Map";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);

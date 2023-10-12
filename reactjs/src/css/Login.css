@@ -1,44 +1,57 @@
-.Login-form{
-    top: 80%;
-    width: 100%;
-    max-width: 600px;
-    margin: 0 auto;
-    border-color: rgb(247, 248, 248); 
-	
-
-    
-    
+.Login-form {
+  top: 80%;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  border-color: rgb(247, 248, 248);
 }
-.box{
 
-	background-color: rgb(255, 255, 255);
-	max-width: 600px;
-	
-    
-	margin: 150px auto 50px;  
-	padding-top:70px;
-	padding-bottom: 100px;
-	padding-left: 70px;
-	padding-right: 70px;
-	border-radius: 5px;
-	box-shadow: 0 5px 50px rgba(141, 137, 137, 0.8);
+body {
+  margin: 0;
+  padding: 0;
+  background: url("../images/background.jpg") no-repeat center center fixed;
+  background-size: cover;
+}
+
+.box {
+  background-color: rgb(255, 255, 255);
+  max-width: 600px;
+  margin: 150px auto 50px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  padding-left: 70px;
+  padding-right: 70px;
+  border-radius: 5px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
   text-align: center;
   font-size: 12px;
 }
 
-.form-control{
-	max-width: 600px;
-	margin-bottom: 20px; 
-	padding: 8px;
-	border: 1px solid #6c6969;
-	border-radius: 2px;
-	font-size: .9em;
-	color: #888;
-	position: relative;
+.form-control {
+  max-width: 600px;
+  margin-bottom: 20px;
+  padding: 8px;
+  border: 1px solid #6c6969;
+  border-radius: 2px;
+  font-size: 0.9em;
+  color: #888;
+  position: relative;
 }
 
+map {
+  height: 100%;
+  width: 100%;
+}
 
-  map {
-    height: 100%; 
-    width: 100%; 
+.copyright {
+  font-size: 12px;
+  color: #bcbcbc;
+}
+
+.logo {
+  margin-bottom: 30px;
+}
+
+.whiteBackground {
+  background-color: white;
 }
