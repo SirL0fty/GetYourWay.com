@@ -11,5 +11,6 @@ import uk.sky.jkamp.SpringBoot.entities.User;
 public interface UserRepo extends JpaRepository<User, Integer> {
 
     Optional<User> findByUsername(String userName);
-
+    Optional<User> findByEmail(String email);
+    User findByPassword(String password);
 }
