@@ -14,6 +14,7 @@ function App() {
   const [userLatitude, setUserLatitude] = useState(999.0);
 
   return (
+    // If user is logged in, the background is white
     <div className={`App ${loggedIn ? "whiteBackground" : ""}`}>
       <Header />
       {!loggedIn && <Login setLoggedIn={setLoggedIn} />}
