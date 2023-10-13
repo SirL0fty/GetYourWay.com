@@ -17,7 +17,9 @@ const FlightList = ({ flights }) => (
       {flights.map((flight) => (
         <li key={flight.id}>
           {/* Display flight information here */}
-          {flight.origin} to {flight.destination} on {flight.departureDate}
+          {flight.itineraries[0].segments[0].departure.iataCode} to{" "}
+          {flight.itineraries[0].segments[0].arrival.iataCode} on{" "}
+          {flight.itineraries[0].segments[0].departure.at.replace("T", " ")}{" "}
         </li>
       ))}
     </ul>
@@ -42,7 +44,7 @@ const FlightSearchForm = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8081/getAllProgramme")
+      .get("http://localhost:8081/getAllProgramme", { withCredentials: true })
       .then((response) => {
         setLocations(response.data);
       })
@@ -53,7 +55,7 @@ const FlightSearchForm = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8081/getLocationbyId")
+      .get("http://localhost:8081/getLocationbyId", { withCredentials: true })
       .then((response) => {
         setDestinationId(response.data);
       })
@@ -90,10 +92,28 @@ const FlightSearchForm = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    let coords = {};
+    for (let location of locations) {
+      if (location.location.id == destination) {
+        coords.lat = location.location.latitude;
+        coords.long = location.location.longitude;
+      }
+    }
+    const res1 = await axios.get(
+      `http://localhost:8081/nearest-airports?latitude=${coords.lat}&longitude=${coords.long}&radius=100`,
+      { withCredentials: true }
+    );
+    const { iataCode: iataCodeDestination } = res1.data[0].data[0]; //destination airport code
+    const nearestLat = origin.split(",")[0];
+    const nearestLong = origin.split(",")[1].trim();
+    const nearestUrl = `http://localhost:8081/nearest-airports?latitude=${nearestLat}&longitude=${nearestLong}&radius=100`;
+
+    const res2 = await axios.get(nearestUrl, { withCredentials: true });
+    const { iataCode: iataCodeOrigin } = res2.data[0].data[0];
 
     const queryParams = new URLSearchParams({
-      origin,
-      destination,
+      origin: iataCodeOrigin,
+      destination: iataCodeDestination,
       departureDate,
       adults,
       children,
@@ -101,7 +121,8 @@ const FlightSearchForm = () => {
 
     try {
       const response = await fetch(
-        `http://localhost:8081/api/flights/search?${queryParams}`
+        `http://localhost:8081/api/flights/search?${queryParams}`,
+        { credentials: "include" }
       );
       if (response.ok) {
         const data = await response.json();
